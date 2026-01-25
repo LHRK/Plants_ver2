@@ -1,0 +1,48 @@
+[ moleculetype ]
+CER   1
+[ atoms ]
+; nr type resnr residue atom cgnr charge mass
+   1    SP2        1    CER     NOH        1       0      54
+   2    TN6        1    CER     OH         2       0      36
+   3    SP1        1    CER     GLA        3       0      54
+   4    P4         1    CER     GLB        4       0      72
+   5    C1         1    CER     C1A        5       0      72
+   6    C1         1    CER     C2A        6       0      72
+   7    C4h        1    CER     D3A        7       0      72
+   8    C1         1    CER     C4A        8       0      72
+   9    C1         1    CER     C5A        9       0      72
+   10   C1         1    CER     C1B       10       0      72
+   11   C1         1    CER     C2B       11       0      72
+   12   C1         1    CER     C3B       12       0      72
+
+[ bonds ]
+; i  j  funct length
+   1       2       1    0.37    9000  ;NOH-OH
+   1       4       1    0.30    9000  ;NOH-GLB
+   1       3       1    0.30    8000  ;NOH-GLA
+   2       4       1    0.30    9000  ;OH-GLB
+   4      10       1    0.47    4000  ;GLB-C1B
+   3       5       1    0.55    3000  ;GLA-C1A
+   ; tails
+   10     11       b_C1_C1_mid        ;C1B-C2B
+   11     12       b_C1_C1_end        ;C2B-C3B
+   5       6       b_C1_C1_mid        ;C1A-C2A
+   6       7       b_C1_C4_mid        ;C2A-D3A
+   7       8       b_C4_C1_mid        ;D3A-C4A
+   8       9       b_C1_C1_end        ;C4A-C5A
+
+
+[ angles ]
+;  i  j  k   funct   angle   force.c.
+   3       5       6       2     160      75  ;GLA-C1A-C2A
+   1       3       5       2     100      55  ;NOH-GLA-C1A
+   2       4      10       2     135      35  ;OH-GLB-C1B 
+   2       3       5       2      90      15  ;OH-GLA-C1A
+   4      10      11       2     160      65  ;GLB-C1B-C2B
+   3       1       4       2     160      65  ;GLA-NOH-GLB
+;tails
+   5       6       7     a_C1_C1_C4_def       ;C1A-C2A-D3A
+   6       7       8     a_C1_C4_C1_def       ;C2A-D3A-C4A
+   7       8       9     a_C4_C1_C1_def       ;D3A-C4A-C5A
+  10      11      12     a_C1_C1_C1_def       ;C1B-C2B-C3B
+

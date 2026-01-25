@@ -1,0 +1,10 @@
+#include "/mnt/f/AA_SIMS_WATER_IONS/MDPs/martini_v3.0.0.itp"
+#include "/home/ltr/PYTHON/M3-Ionizable-Lipids_dev/Collection_of_itps/Martini_v1_tails-2.itp"
+#include "initial_CG.itp"
+#include "/mnt/f/AA_SIMS_WATER_IONS/MDPs/martini_v3.0.0_solvents_v1.itp"
+#include "/mnt/f/AA_SIMS_WATER_IONS/MDPs/martini_v3.0.0_ions_v1.itp"
+[system]
+one molecule
+
+[ molecules ]
+CER6   1
