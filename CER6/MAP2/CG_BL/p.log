@@ -1,0 +1,1616 @@
+                      :-) GROMACS - gmx mdrun, 2023.1 (-:
+
+Copyright 1991-2023 The GROMACS Authors.
+GROMACS is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
+as published by the Free Software Foundation; either version 2.1
+of the License, or (at your option) any later version.
+
+                         Current GROMACS contributors:
+       Mark Abraham           Andrey Alekseenko           Cathrine Bergh      
+      Christian Blau            Eliane Briand             Mahesh Doijade      
+    Stefan Fleischmann           Vytas Gapsys              Gaurav Garg        
+      Sergey Gorelov         Gilles Gouaillardet            Alan Gray         
+     M. Eric Irrgang         Farzaneh Jalalypour            Joe Jordan        
+    Christoph Junghans        Prashanth Kanduri          Sebastian Keller     
+     Carsten Kutzner           Justin A. Lemkul          Magnus Lundborg      
+       Pascal Merz              Vedran Miletic            Dmitry Morozov      
+       Szilard Pall             Roland Schulz             Michael Shirts      
+     Alexey Shvetsov            Balint Soproni         David van der Spoel    
+      Philip Turner             Carsten Uphoff           Alessandra Villa     
+ Sebastian Wingbermuehle        Artem Zhmurov       
+
+                         Previous GROMACS contributors:
+        Emile Apol             Rossen Apostolov           James Barnett       
+  Herman J.C. Berendsen          Par Bjelkmar           Viacheslav Bolnykh    
+        Kevin Boyd            Aldert van Buuren          Carlo Camilloni      
+     Rudi van Drunen            Anton Feenstra           Oliver Fleetwood     
+     Gerrit Groenhof            Bert de Groot             Anca Hamuraru       
+    Vincent Hindriksen          Victor Holanda           Aleksei Iupinov      
+   Dimitrios Karkoulis           Peter Kasson             Sebastian Kehl      
+        Jiri Kraus               Per Larsson              Viveca Lindahl      
+      Erik Marklund           Pieter Meulenhoff           Teemu Murtola       
+       Sander Pronk             Alfons Sijbers            Peter Tieleman      
+       Jon Vincent             Teemu Virolainen         Christian Wennberg    
+       Maarten Wolf       
+
+                  Coordinated by the GROMACS project leaders:
+                    Paul Bauer, Berk Hess, and Erik Lindahl
+
+GROMACS:      gmx mdrun, version 2023.1
+Executable:   /usr/local/gromacs/bin/gmx
+Data prefix:  /usr/local/gromacs
+Working dir:  /mnt/f/BILAYERS/CER6/gromacs_MAP2/CG_BL
+Process ID:   11311
+Command line:
+  gmx mdrun -v -deffnm p -nt 5 -rdd 1.6
+
+GROMACS version:    2023.1
+Precision:          mixed
+Memory model:       64 bit
+MPI library:        thread_mpi
+OpenMP support:     enabled (GMX_OPENMP_MAX_THREADS = 128)
+GPU support:        disabled
+SIMD instructions:  AVX2_256
+CPU FFT library:    fftw-3.3.8-sse2-avx-avx2-avx2_128
+GPU FFT library:    none
+Multi-GPU FFT:      none
+RDTSCP usage:       enabled
+TNG support:        enabled
+Hwloc support:      disabled
+Tracing support:    disabled
+C compiler:         /usr/bin/cc GNU 9.4.0
+C compiler flags:   -fexcess-precision=fast -funroll-all-loops -mavx2 -mfma -Wno-missing-field-initializers -O3 -DNDEBUG
+C++ compiler:       /usr/bin/c++ GNU 9.4.0
+C++ compiler flags: -fexcess-precision=fast -funroll-all-loops -mavx2 -mfma -Wno-missing-field-initializers -Wno-cast-function-type-strict -fopenmp -O3 -DNDEBUG
+BLAS library:       Internal
+LAPACK library:     Internal
+
+
+Running on 1 node with total 6 cores, 12 processing units
+Hardware detected on host LAPTOP-BGGAS206:
+  CPU info:
+    Vendor: AMD
+    Brand:  AMD Ryzen 5 4600H with Radeon Graphics         
+    Family: 23   Model: 96   Stepping: 1
+    Features: aes amd apic avx avx2 clfsh cmov cx8 cx16 f16c fma htt lahf misalignsse mmx msr nonstop_tsc pclmuldq pdpe1gb popcnt pse rdrnd rdtscp sha sse2 sse3 sse4a sse4.1 sse4.2 ssse3
+  Hardware topology: Basic
+    Packages, cores, and logical processors:
+    [indices refer to OS logical processors]
+      Package  0: [   0   1] [   2   3] [   4   5] [   6   7] [   8   9] [  10  11]
+    CPU limit set by OS: -1   Recommended max number of threads: 12
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+M. J. Abraham, T. Murtola, R. Schulz, S. Páll, J. C. Smith, B. Hess, E.
+Lindahl
+GROMACS: High performance molecular simulations through multi-level
+parallelism from laptops to supercomputers
+SoftwareX 1 (2015) pp. 19-25
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+S. Páll, M. J. Abraham, C. Kutzner, B. Hess, E. Lindahl
+Tackling Exascale Software Challenges in Molecular Dynamics Simulations with
+GROMACS
+In S. Markidis & E. Laure (Eds.), Solving Software Challenges for Exascale 8759 (2015) pp. 3-27
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+S. Pronk, S. Páll, R. Schulz, P. Larsson, P. Bjelkmar, R. Apostolov, M. R.
+Shirts, J. C. Smith, P. M. Kasson, D. van der Spoel, B. Hess, and E. Lindahl
+GROMACS 4.5: a high-throughput and highly parallel open source molecular
+simulation toolkit
+Bioinformatics 29 (2013) pp. 845-54
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+B. Hess and C. Kutzner and D. van der Spoel and E. Lindahl
+GROMACS 4: Algorithms for highly efficient, load-balanced, and scalable
+molecular simulation
+J. Chem. Theory Comput. 4 (2008) pp. 435-447
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+D. van der Spoel, E. Lindahl, B. Hess, G. Groenhof, A. E. Mark and H. J. C.
+Berendsen
+GROMACS: Fast, Flexible and Free
+J. Comp. Chem. 26 (2005) pp. 1701-1719
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+E. Lindahl and B. Hess and D. van der Spoel
+GROMACS 3.0: A package for molecular simulation and trajectory analysis
+J. Mol. Mod. 7 (2001) pp. 306-317
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+H. J. C. Berendsen, D. van der Spoel and R. van Drunen
+GROMACS: A message-passing parallel molecular dynamics implementation
+Comp. Phys. Comm. 91 (1995) pp. 43-56
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE CITE THE DOI FOR THIS VERSION OF GROMACS ++++
+https://doi.org/10.5281/zenodo.7852175
+-------- -------- --- Thank You --- -------- --------
+
+Input Parameters:
+   integrator                     = md
+   tinit                          = 0
+   dt                             = 0.02
+   nsteps                         = 100000000
+   init-step                      = 0
+   simulation-part                = 1
+   mts                            = false
+   comm-mode                      = Linear
+   nstcomm                        = 100
+   bd-fric                        = 0
+   ld-seed                        = -11542597
+   emtol                          = 10
+   emstep                         = 0.01
+   niter                          = 20
+   fcstep                         = 0
+   nstcgsteep                     = 1000
+   nbfgscorr                      = 10
+   rtpi                           = 0.05
+   nstxout                        = 0
+   nstvout                        = 0
+   nstfout                        = 0
+   nstlog                         = 1000000
+   nstcalcenergy                  = 100
+   nstenergy                      = 1000
+   nstxout-compressed             = 10000
+   compressed-x-precision         = 100
+   cutoff-scheme                  = Verlet
+   nstlist                        = 20
+   pbc                            = xyz
+   periodic-molecules             = false
+   verlet-buffer-tolerance        = 0.002
+   rlist                          = 1.252
+   coulombtype                    = Reaction-Field
+   coulomb-modifier               = Potential-shift
+   rcoulomb-switch                = 0
+   rcoulomb                       = 1.1
+   epsilon-r                      = 15
+   epsilon-rf                     = inf
+   vdw-type                       = Cut-off
+   vdw-modifier                   = Potential-shift
+   rvdw-switch                    = 0
+   rvdw                           = 1.1
+   DispCorr                       = No
+   table-extension                = 1
+   fourierspacing                 = 0.12
+   fourier-nx                     = 0
+   fourier-ny                     = 0
+   fourier-nz                     = 0
+   pme-order                      = 4
+   ewald-rtol                     = 1e-05
+   ewald-rtol-lj                  = 0.001
+   lj-pme-comb-rule               = Geometric
+   ewald-geometry                 = 3d
+   epsilon-surface                = 0
+   ensemble-temperature-setting   = constant
+   ensemble-temperature           = 310
+   tcoupl                         = V-rescale
+   nsttcouple                     = 10
+   nh-chain-length                = 0
+   print-nose-hoover-chain-variables = false
+   pcoupl                         = Parrinello-Rahman
+   pcoupltype                     = Semiisotropic
+   nstpcouple                     = 25
+   tau-p                          = 12
+   compressibility (3x3):
+      compressibility[    0]={ 3.00000e-04,  0.00000e+00,  0.00000e+00}
+      compressibility[    1]={ 0.00000e+00,  3.00000e-04,  0.00000e+00}
+      compressibility[    2]={ 0.00000e+00,  0.00000e+00,  3.00000e-04}
+   ref-p (3x3):
+      ref-p[    0]={ 1.00000e+00,  0.00000e+00,  0.00000e+00}
+      ref-p[    1]={ 0.00000e+00,  1.00000e+00,  0.00000e+00}
+      ref-p[    2]={ 0.00000e+00,  0.00000e+00,  1.00000e+00}
+   refcoord-scaling               = COM
+   posres-com (3):
+      posres-com[0]= 0.00000e+00
+      posres-com[1]= 0.00000e+00
+      posres-com[2]= 0.00000e+00
+   posres-comB (3):
+      posres-comB[0]= 0.00000e+00
+      posres-comB[1]= 0.00000e+00
+      posres-comB[2]= 0.00000e+00
+   QMMM                           = false
+qm-opts:
+   ngQM                           = 0
+   constraint-algorithm           = Lincs
+   continuation                   = true
+   Shake-SOR                      = false
+   shake-tol                      = 0.0001
+   lincs-order                    = 4
+   lincs-iter                     = 1
+   lincs-warnangle                = 90
+   nwall                          = 0
+   wall-type                      = 9-3
+   wall-r-linpot                  = -1
+   wall-atomtype[0]               = -1
+   wall-atomtype[1]               = -1
+   wall-density[0]                = 0
+   wall-density[1]                = 0
+   wall-ewald-zfac                = 3
+   pull                           = false
+   awh                            = false
+   rotation                       = false
+   interactiveMD                  = false
+   disre                          = No
+   disre-weighting                = Conservative
+   disre-mixed                    = false
+   dr-fc                          = 1000
+   dr-tau                         = 0
+   nstdisreout                    = 100
+   orire-fc                       = 0
+   orire-tau                      = 0
+   nstorireout                    = 100
+   free-energy                    = no
+   cos-acceleration               = 0
+   deform (3x3):
+      deform[    0]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      deform[    1]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      deform[    2]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+   simulated-tempering            = false
+   swapcoords                     = no
+   userint1                       = 0
+   userint2                       = 0
+   userint3                       = 0
+   userint4                       = 0
+   userreal1                      = 0
+   userreal2                      = 0
+   userreal3                      = 0
+   userreal4                      = 0
+   applied-forces:
+     electric-field:
+       x:
+         E0                       = 0
+         omega                    = 0
+         t0                       = 0
+         sigma                    = 0
+       y:
+         E0                       = 0
+         omega                    = 0
+         t0                       = 0
+         sigma                    = 0
+       z:
+         E0                       = 0
+         omega                    = 0
+         t0                       = 0
+         sigma                    = 0
+     density-guided-simulation:
+       active                     = false
+       group                      = protein
+       similarity-measure         = inner-product
+       atom-spreading-weight      = unity
+       force-constant             = 1e+09
+       gaussian-transform-spreading-width = 0.2
+       gaussian-transform-spreading-range-in-multiples-of-width = 4
+       reference-density-filename = reference.mrc
+       nst                        = 1
+       normalize-densities        = true
+       adaptive-force-scaling     = false
+       adaptive-force-scaling-time-constant = 4
+       shift-vector               = 
+       transformation-matrix      = 
+     qmmm-cp2k:
+       active                     = false
+       qmgroup                    = System
+       qmmethod                   = PBE
+       qmfilenames                = 
+       qmcharge                   = 0
+       qmmultiplicity             = 1
+grpopts:
+   nrdf:     1799.14     4473.86
+   ref-t:         310         310
+   tau-t:           1           1
+annealing:          No          No
+annealing-npoints:           0           0
+   acc:	           0           0           0
+   nfreeze:           N           N           N
+   energygrp-flags[  0]: 0
+
+Changing nstlist from 20 to 25, rlist from 1.252 to 1.31
+
+When checking whether update groups are usable:
+  Domain decomposition is not active, so there is no need for update groups
+  No constraints or virtual sites are in use, so it is best not to use update groups
+
+Update task can not run on the GPU, because the following condition(s) were not satisfied:
+
+Either PME or short-ranged non-bonded interaction tasks must run on the GPU.
+Compatible GPUs must have been found.
+Only CUDA and SYCL builds are supported.
+The number of coupled constraints is higher than supported in the GPU LINCS code.
+
+Using 1 MPI thread
+Using 5 OpenMP threads 
+
+System total charge: 0.000
+Reaction-Field:
+epsRF = 0, rc = 1.1, krf = 0.375657, crf = 1.36364, epsfac = 9.26236
+The electrostatics potential has its minimum at r = 1.1
+Potential shift: LJ r^-12: -3.186e-01 r^-6: -5.645e-01
+
+
+Using SIMD 4x8 nonbonded short-range kernels
+
+Using a dual 4x8 pair-list setup updated with dynamic pruning:
+  outer list: updated every 25 steps, buffer 0.210 nm, rlist 1.310 nm
+  inner list: updated every  4 steps, buffer 0.006 nm, rlist 1.106 nm
+At tolerance 0.002 kJ/mol/ps per atom, equivalent classical 1x1 list would be:
+  outer list: updated every 25 steps, buffer 0.312 nm, rlist 1.412 nm
+  inner list: updated every  4 steps, buffer 0.022 nm, rlist 1.122 nm
+
+Using full Lennard-Jones parameter combination matrix
+
+NOTE: The number of threads is not equal to the number of (logical) cpus
+      and the -pin option is set to auto: will not pin threads to cpus.
+      This can lead to significant performance degradation.
+      Consider using -pin on (and -pinoffset in case you run multiple jobs).
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+G. Bussi, D. Donadio and M. Parrinello
+Canonical sampling through velocity rescaling
+J. Chem. Phys. 126 (2007) pp. 014101
+-------- -------- --- Thank You --- -------- --------
+
+There are: 2092 Atoms
+Center of mass motion removal mode is Linear
+We have the following groups for center of mass motion removal:
+  0:  System
+
+Started mdrun on rank 0 Mon Feb 10 18:36:38 2025
+
+           Step           Time
+              0        0.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.11762e+03    7.58837e+02    1.47300e+02   -4.66434e+04   -3.74681e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.49943e+04    8.04823e+03   -3.69461e+04   -3.69320e+04    3.08618e+02
+ Pressure (bar)
+    1.45881e+01
+
+           Step           Time
+        1000000    20000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.16907e+03    8.04602e+02    1.19527e+02   -4.64626e+04   -3.81052e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.47505e+04    8.11897e+03   -3.66315e+04   -7.51992e+04    3.11330e+02
+ Pressure (bar)
+    1.69946e+01
+
+           Step           Time
+        2000000    40000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.10416e+03    8.27269e+02    1.35905e+02   -4.64762e+04   -3.36630e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.47455e+04    7.75764e+03   -3.69879e+04   -1.13697e+05    2.97475e+02
+ Pressure (bar)
+   -4.58549e+01
+
+           Step           Time
+        3000000    60000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.08089e+03    7.38181e+02    1.15636e+02   -4.66771e+04   -3.71898e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51143e+04    8.10087e+03   -3.70134e+04   -1.52507e+05    3.10636e+02
+ Pressure (bar)
+    9.75394e+01
+
+           Step           Time
+        4000000    80000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.08328e+03    7.58752e+02    1.17869e+02   -4.68172e+04   -3.49380e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.52067e+04    7.90036e+03   -3.73063e+04   -1.89800e+05    3.02948e+02
+ Pressure (bar)
+    1.71428e+01
+
+           Step           Time
+        5000000   100000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.09180e+03    8.46400e+02    1.09237e+02   -4.67032e+04   -3.68274e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.50241e+04    7.90723e+03   -3.71168e+04   -2.27544e+05    3.03211e+02
+ Pressure (bar)
+   -1.54010e+02
+
+           Step           Time
+        6000000   120000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.01834e+03    8.43739e+02    1.15815e+02   -4.69592e+04   -3.79825e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.53611e+04    8.19620e+03   -3.71649e+04   -2.64709e+05    3.14292e+02
+ Pressure (bar)
+    7.32191e+01
+
+Writing checkpoint, step 6904650 at Mon Feb 10 18:51:38 2025
+
+
+           Step           Time
+        7000000   140000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.15228e+03    8.29879e+02    1.16888e+02   -4.68317e+04   -3.70167e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51028e+04    8.07258e+03   -3.70302e+04   -3.03327e+05    3.09552e+02
+ Pressure (bar)
+   -8.85511e+01
+
+           Step           Time
+        8000000   160000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.09005e+03    8.04530e+02    1.24761e+02   -4.67626e+04   -3.92449e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51357e+04    7.93820e+03   -3.71975e+04   -3.41759e+05    3.04398e+02
+ Pressure (bar)
+    5.57521e+01
+
+           Step           Time
+        9000000   180000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.08954e+03    7.61848e+02    1.19300e+02   -4.68780e+04   -3.72933e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.52802e+04    7.85730e+03   -3.74229e+04   -3.79173e+05    3.01296e+02
+ Pressure (bar)
+    4.00009e+01
+
+           Step           Time
+       10000000   200000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    9.41039e+02    8.23705e+02    1.42507e+02   -4.65361e+04   -3.67499e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.49964e+04    8.08333e+03   -3.69131e+04   -4.16899e+05    3.09964e+02
+ Pressure (bar)
+   -5.26355e+01
+
+           Step           Time
+       11000000   220000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.13460e+03    8.31188e+02    1.43800e+02   -4.62778e+04   -3.56605e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.45248e+04    8.22669e+03   -3.62981e+04   -4.55035e+05    3.15461e+02
+ Pressure (bar)
+    1.18349e+02
+
+           Step           Time
+       12000000   240000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.00857e+03    7.57013e+02    1.37325e+02   -4.68456e+04   -3.63301e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.53060e+04    7.80788e+03   -3.74981e+04   -4.93513e+05    2.99401e+02
+ Pressure (bar)
+   -1.64034e+02
+
+           Step           Time
+       13000000   260000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    9.71745e+02    7.79686e+02    1.35737e+02   -4.67163e+04   -4.34621e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.52637e+04    8.02495e+03   -3.72388e+04   -5.32335e+05    3.07725e+02
+ Pressure (bar)
+    1.12654e+02
+
+Writing checkpoint, step 13809450 at Mon Feb 10 19:06:38 2025
+
+
+           Step           Time
+       14000000   280000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.02493e+03    7.83004e+02    1.22546e+02   -4.64632e+04   -3.73151e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.49058e+04    7.93966e+03   -3.69662e+04   -5.71373e+05    3.04455e+02
+ Pressure (bar)
+    7.68796e+01
+
+           Step           Time
+       15000000   300000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.00546e+03    8.22858e+02    1.44627e+02   -4.65017e+04   -4.16243e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.49450e+04    8.00059e+03   -3.69444e+04   -6.09477e+05    3.06791e+02
+ Pressure (bar)
+   -1.15467e+02
+
+           Step           Time
+       16000000   320000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.02794e+03    7.73303e+02    1.29778e+02   -4.66606e+04   -3.81047e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51107e+04    8.18444e+03   -3.69262e+04   -6.47739e+05    3.13841e+02
+ Pressure (bar)
+    7.58692e+01
+
+           Step           Time
+       17000000   340000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.04391e+03    8.00186e+02    1.20962e+02   -4.67310e+04   -3.60895e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51269e+04    8.05358e+03   -3.70733e+04   -6.86113e+05    3.08823e+02
+ Pressure (bar)
+   -1.28656e+02
+
+           Step           Time
+       18000000   360000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.08537e+03    7.39676e+02    1.17775e+02   -4.69470e+04   -3.39018e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.53432e+04    8.04957e+03   -3.72937e+04   -7.23959e+05    3.08669e+02
+ Pressure (bar)
+    3.82777e+01
+
+           Step           Time
+       19000000   380000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.04347e+03    7.36715e+02    1.10819e+02   -4.70426e+04   -3.78935e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.55306e+04    8.25783e+03   -3.72727e+04   -7.61074e+05    3.16655e+02
+ Pressure (bar)
+    1.44759e+02
+
+           Step           Time
+       20000000   400000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.06411e+03    8.22339e+02    1.35281e+02   -4.63862e+04   -3.97571e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.47621e+04    8.03624e+03   -3.67258e+04   -7.99118e+05    3.08158e+02
+ Pressure (bar)
+   -1.55058e+02
+
+Writing checkpoint, step 20655800 at Mon Feb 10 19:21:38 2025
+
+
+           Step           Time
+       21000000   420000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    9.78187e+02    7.06557e+02    1.31214e+02   -4.69736e+04   -4.28895e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.55865e+04    8.18950e+03   -3.73970e+04   -8.37959e+05    3.14035e+02
+ Pressure (bar)
+   -1.13712e+00
+
+           Step           Time
+       22000000   440000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.06189e+03    6.53248e+02    1.24778e+02   -4.68251e+04   -4.29104e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.54143e+04    8.10471e+03   -3.73096e+04   -8.74965e+05    3.10784e+02
+ Pressure (bar)
+    2.96690e+01
+
+           Step           Time
+       23000000   460000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.06387e+03    8.22663e+02    1.20894e+02   -4.68180e+04   -4.08131e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.52187e+04    8.35996e+03   -3.68587e+04   -9.12651e+05    3.20572e+02
+ Pressure (bar)
+    2.13591e+02
+
+           Step           Time
+       24000000   480000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.04141e+03    7.50927e+02    1.16752e+02   -4.70441e+04   -3.70746e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.55057e+04    8.00911e+03   -3.74966e+04   -9.51370e+05    3.07117e+02
+ Pressure (bar)
+   -6.18455e+01
+
+           Step           Time
+       25000000   500000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.05979e+03    7.89029e+02    1.46239e+02   -4.66172e+04   -3.83863e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.50060e+04    8.04340e+03   -3.69626e+04   -9.89056e+05    3.08433e+02
+ Pressure (bar)
+   -1.09073e+02
+
+           Step           Time
+       26000000   520000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.09629e+03    8.03378e+02    1.24775e+02   -4.67304e+04   -3.45394e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.50514e+04    8.40534e+03   -3.66460e+04   -1.02844e+06    3.22312e+02
+ Pressure (bar)
+    6.37808e+01
+
+           Step           Time
+       27000000   540000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.09510e+03    7.65010e+02    1.13084e+02   -4.69168e+04   -3.72750e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.53164e+04    7.95586e+03   -3.73605e+04   -1.06587e+06    3.05076e+02
+ Pressure (bar)
+   -5.02731e+01
+
+Writing checkpoint, step 27519500 at Mon Feb 10 19:36:38 2025
+
+
+           Step           Time
+       28000000   560000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.10200e+03    7.58096e+02    1.09403e+02   -4.71937e+04   -4.22549e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.56467e+04    8.02152e+03   -3.76252e+04   -1.10310e+06    3.07593e+02
+ Pressure (bar)
+    1.37690e+02
+
+           Step           Time
+       29000000   580000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.02804e+03    7.33639e+02    1.30203e+02   -4.67854e+04   -3.70049e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.52636e+04    7.87437e+03   -3.73892e+04   -1.14201e+06    3.01951e+02
+ Pressure (bar)
+    3.37759e+00
+
+           Step           Time
+       30000000   600000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.05199e+03    7.45609e+02    1.48666e+02   -4.72434e+04   -3.51211e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.56483e+04    7.96742e+03   -3.76809e+04   -1.18001e+06    3.05519e+02
+ Pressure (bar)
+    1.78616e+02
+
+           Step           Time
+       31000000   620000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.11208e+03    8.22028e+02    1.64899e+02   -4.70277e+04   -3.83605e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.53123e+04    8.36497e+03   -3.69473e+04   -1.21630e+06    3.20763e+02
+ Pressure (bar)
+    2.53994e+02
+
+           Step           Time
+       32000000   640000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.03704e+03    7.90084e+02    1.03125e+02   -4.64325e+04   -3.66120e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.48684e+04    8.06067e+03   -3.68077e+04   -1.25302e+06    3.09095e+02
+ Pressure (bar)
+    3.24634e-01
+
+           Step           Time
+       33000000   660000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.03250e+03    7.68744e+02    1.22112e+02   -4.67719e+04   -3.28597e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51771e+04    8.28737e+03   -3.68898e+04   -1.29113e+06    3.17788e+02
+ Pressure (bar)
+   -4.70227e+01
+
+           Step           Time
+       34000000   680000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.04648e+03    7.65352e+02    1.12085e+02   -4.69512e+04   -3.80136e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.54074e+04    7.98814e+03   -3.74193e+04   -1.32927e+06    3.06314e+02
+ Pressure (bar)
+   -8.28882e+01
+
+Writing checkpoint, step 34391800 at Mon Feb 10 19:51:38 2025
+
+
+           Step           Time
+       35000000   700000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.13250e+03    7.99216e+02    1.28780e+02   -4.70094e+04   -3.92055e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.53409e+04    8.00188e+03   -3.73390e+04   -1.36774e+06    3.06840e+02
+ Pressure (bar)
+    8.45156e+01
+
+           Step           Time
+       36000000   720000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.10743e+03    7.39471e+02    1.30866e+02   -4.70021e+04   -3.78644e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.54030e+04    8.18916e+03   -3.72138e+04   -1.40498e+06    3.14022e+02
+ Pressure (bar)
+   -1.21440e+02
+
+           Step           Time
+       37000000   740000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.06790e+03    7.58059e+02    1.16097e+02   -4.66751e+04   -4.24161e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51572e+04    7.99298e+03   -3.71642e+04   -1.44170e+06    3.06499e+02
+ Pressure (bar)
+   -2.90569e+01
+
+           Step           Time
+       38000000   760000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    9.61095e+02    7.28540e+02    1.33209e+02   -4.69691e+04   -3.66147e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.55124e+04    8.15775e+03   -3.73546e+04   -1.47927e+06    3.12817e+02
+ Pressure (bar)
+   -1.12960e+02
+
+           Step           Time
+       39000000   780000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.18835e+03    7.41005e+02    1.21262e+02   -4.68093e+04   -3.40214e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.50989e+04    8.15534e+03   -3.69436e+04   -1.51774e+06    3.12725e+02
+ Pressure (bar)
+   -2.80681e+00
+
+           Step           Time
+       40000000   800000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.08812e+03    7.55458e+02    1.07962e+02   -4.72681e+04   -3.87620e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.57042e+04    8.24339e+03   -3.74608e+04   -1.55536e+06    3.16101e+02
+ Pressure (bar)
+    1.60534e+02
+
+           Step           Time
+       41000000   820000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.05546e+03    8.31097e+02    1.48038e+02   -4.63619e+04   -3.80055e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.47073e+04    8.47888e+03   -3.62285e+04   -1.59406e+06    3.25132e+02
+ Pressure (bar)
+    2.10076e+02
+
+Writing checkpoint, step 41235250 at Mon Feb 10 20:06:38 2025
+
+
+           Step           Time
+       42000000   840000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.02015e+03    7.80471e+02    1.21116e+02   -4.62828e+04   -3.39415e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.47005e+04    8.13114e+03   -3.65693e+04   -1.63262e+06    3.11797e+02
+ Pressure (bar)
+    1.66581e+00
+
+           Step           Time
+       43000000   860000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.05741e+03    8.17705e+02    1.39737e+02   -4.71881e+04   -3.85897e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.55591e+04    8.06615e+03   -3.74930e+04   -1.66954e+06    3.09305e+02
+ Pressure (bar)
+   -1.45858e+02
+
+           Step           Time
+       44000000   880000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.10276e+03    7.70875e+02    1.02612e+02   -4.65645e+04   -3.56990e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.49452e+04    7.98478e+03   -3.69605e+04   -1.70685e+06    3.06185e+02
+ Pressure (bar)
+   -1.10777e+02
+
+           Step           Time
+       45000000   900000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.08528e+03    8.07030e+02    1.05394e+02   -4.70531e+04   -3.90842e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.54462e+04    8.16070e+03   -3.72855e+04   -1.74535e+06    3.12931e+02
+ Pressure (bar)
+    1.93875e+02
+
+           Step           Time
+       46000000   920000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.05223e+03    7.99077e+02    1.26706e+02   -4.61970e+04   -3.86907e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.46058e+04    8.16838e+03   -3.64375e+04   -1.78191e+06    3.13225e+02
+ Pressure (bar)
+   -5.31274e+01
+
+           Step           Time
+       47000000   940000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.05318e+03    8.18814e+02    1.33888e+02   -4.65718e+04   -3.78851e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.49448e+04    8.31521e+03   -3.66295e+04   -1.82061e+06    3.18855e+02
+ Pressure (bar)
+    4.27379e+01
+
+           Step           Time
+       48000000   960000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.02722e+03    8.03910e+02    1.23447e+02   -4.65412e+04   -3.88078e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.49747e+04    7.88698e+03   -3.70877e+04   -1.85887e+06    3.02434e+02
+ Pressure (bar)
+    4.89031e+01
+
+Writing checkpoint, step 48122025 at Mon Feb 10 20:21:38 2025
+
+
+           Step           Time
+       49000000   980000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.09004e+03    8.12513e+02    1.39479e+02   -4.64249e+04   -3.60624e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.47435e+04    8.15587e+03   -3.65876e+04   -1.89583e+06    3.12745e+02
+ Pressure (bar)
+    7.90769e+01
+
+           Step           Time
+       50000000   1000000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.14008e+03    7.44874e+02    1.26224e+02   -4.67402e+04   -3.77116e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51062e+04    8.27293e+03   -3.68332e+04   -1.93382e+06    3.17234e+02
+ Pressure (bar)
+    7.67925e+01
+
+           Step           Time
+       51000000   1020000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.00388e+03    8.39842e+02    1.62574e+02   -4.67624e+04   -3.81714e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51379e+04    8.08657e+03   -3.70513e+04   -1.97113e+06    3.10088e+02
+ Pressure (bar)
+   -8.09719e+01
+
+           Step           Time
+       52000000   1040000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.16697e+03    8.48436e+02    1.22710e+02   -4.64190e+04   -3.88542e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.46694e+04    8.06101e+03   -3.66084e+04   -2.01051e+06    3.09108e+02
+ Pressure (bar)
+    6.95011e+01
+
+           Step           Time
+       53000000   1060000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.08020e+03    7.40313e+02    1.24288e+02   -4.61422e+04   -3.92704e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.45901e+04    8.33928e+03   -3.62508e+04   -2.04764e+06    3.19778e+02
+ Pressure (bar)
+    2.95547e+01
+
+           Step           Time
+       54000000   1080000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.09244e+03    7.85605e+02    1.30814e+02   -4.66077e+04   -3.56463e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.49553e+04    8.19841e+03   -3.67569e+04   -2.08615e+06    3.14377e+02
+ Pressure (bar)
+    3.24157e+01
+
+Writing checkpoint, step 54993850 at Mon Feb 10 20:36:38 2025
+
+
+           Step           Time
+       55000000   1100000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.13530e+03    8.16688e+02    1.32305e+02   -4.68112e+04   -3.88020e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51150e+04    8.31958e+03   -3.67954e+04   -2.12427e+06    3.19023e+02
+ Pressure (bar)
+    1.15316e+01
+
+           Step           Time
+       56000000   1120000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.07725e+03    7.01980e+02    1.40483e+02   -4.70188e+04   -3.98492e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.54975e+04    7.76287e+03   -3.77347e+04   -2.16124e+06    2.97675e+02
+ Pressure (bar)
+   -2.03800e+02
+
+           Step           Time
+       57000000   1140000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.02460e+03    7.98007e+02    1.31224e+02   -4.66393e+04   -3.64150e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.50496e+04    7.98078e+03   -3.70688e+04   -2.19939e+06    3.06031e+02
+ Pressure (bar)
+   -1.25505e+02
+
+           Step           Time
+       58000000   1160000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.06565e+03    7.83694e+02    1.09320e+02   -4.66646e+04   -3.49492e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.50554e+04    8.13198e+03   -3.69234e+04   -2.23768e+06    3.11829e+02
+ Pressure (bar)
+   -1.04002e+02
+
+           Step           Time
+       59000000   1180000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.07573e+03    7.89649e+02    1.38241e+02   -4.64368e+04   -3.36453e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.47696e+04    7.95118e+03   -3.68184e+04   -2.27572e+06    3.04896e+02
+ Pressure (bar)
+    9.03333e+01
+
+           Step           Time
+       60000000   1200000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    9.84802e+02    6.98008e+02    1.25796e+02   -4.61144e+04   -3.86363e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.46921e+04    8.28904e+03   -3.64031e+04   -2.31418e+06    3.17852e+02
+ Pressure (bar)
+   -6.89018e+01
+
+           Step           Time
+       61000000   1220000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.10161e+03    7.60359e+02    1.35121e+02   -4.71103e+04   -3.85577e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.54988e+04    8.15601e+03   -3.73428e+04   -2.35235e+06    3.12751e+02
+ Pressure (bar)
+   -1.63239e+02
+
+Writing checkpoint, step 61883200 at Mon Feb 10 20:51:38 2025
+
+
+           Step           Time
+       62000000   1240000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.08690e+03    8.02432e+02    1.05578e+02   -4.68015e+04   -3.83417e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51900e+04    7.95532e+03   -3.72347e+04   -2.38929e+06    3.05055e+02
+ Pressure (bar)
+   -5.21653e+01
+
+           Step           Time
+       63000000   1260000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.17530e+03    7.92327e+02    1.50200e+02   -4.71853e+04   -3.46270e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.54138e+04    8.27764e+03   -3.71361e+04   -2.42669e+06    3.17415e+02
+ Pressure (bar)
+   -3.43744e-01
+
+           Step           Time
+       64000000   1280000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.01048e+03    7.90913e+02    1.18478e+02   -4.65859e+04   -3.65871e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.50319e+04    7.72331e+03   -3.73086e+04   -2.46568e+06    2.96159e+02
+ Pressure (bar)
+   -6.72360e+01
+
+           Step           Time
+       65000000   1300000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.08151e+03    7.84368e+02    1.48398e+02   -4.69891e+04   -3.76561e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.53514e+04    8.11136e+03   -3.72401e+04   -2.50381e+06    3.11039e+02
+ Pressure (bar)
+   -1.07806e+02
+
+           Step           Time
+       66000000   1320000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.10956e+03    8.26531e+02    1.14703e+02   -4.67066e+04   -3.60458e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.50162e+04    8.29709e+03   -3.67191e+04   -2.54244e+06    3.18160e+02
+ Pressure (bar)
+   -1.07816e+02
+
+           Step           Time
+       67000000   1340000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    9.92391e+02    7.84591e+02    1.37614e+02   -4.72052e+04   -3.84597e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.56752e+04    7.99465e+03   -3.76805e+04   -2.58029e+06    3.06563e+02
+ Pressure (bar)
+    2.44363e+02
+
+           Step           Time
+       68000000   1360000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.12445e+03    7.67230e+02    1.08275e+02   -4.67316e+04   -3.84700e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51164e+04    8.20634e+03   -3.69101e+04   -2.61727e+06    3.14680e+02
+ Pressure (bar)
+    1.16168e+02
+
+Writing checkpoint, step 68758925 at Mon Feb 10 21:06:38 2025
+
+
+           Step           Time
+       69000000   1380000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.10745e+03    8.04521e+02    1.17238e+02   -4.59586e+04   -4.20782e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.43502e+04    7.81837e+03   -3.65318e+04   -2.65546e+06    2.99804e+02
+ Pressure (bar)
+    9.11890e+01
+
+           Step           Time
+       70000000   1400000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.12104e+03    8.07358e+02    1.24627e+02   -4.66667e+04   -3.23416e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.49371e+04    8.39552e+03   -3.65416e+04   -2.69292e+06    3.21935e+02
+ Pressure (bar)
+    7.20012e+01
+
+           Step           Time
+       71000000   1420000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.04236e+03    7.39777e+02    1.68578e+02   -4.67673e+04   -4.03667e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.52202e+04    8.00090e+03   -3.72193e+04   -2.73242e+06    3.06803e+02
+ Pressure (bar)
+    1.53748e+02
+
+           Step           Time
+       72000000   1440000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.07963e+03    7.72261e+02    1.35042e+02   -4.71559e+04   -3.62046e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.55310e+04    7.87056e+03   -3.76605e+04   -2.77080e+06    3.01805e+02
+ Pressure (bar)
+   -4.56894e+01
+
+           Step           Time
+       73000000   1460000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.03247e+03    8.06580e+02    1.14056e+02   -4.67772e+04   -3.48025e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51721e+04    8.36179e+03   -3.68103e+04   -2.81002e+06    3.20642e+02
+ Pressure (bar)
+    1.93577e+02
+
+           Step           Time
+       74000000   1480000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.11548e+03    8.08832e+02    1.58343e+02   -4.67529e+04   -4.21010e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.50912e+04    7.86050e+03   -3.72307e+04   -2.84808e+06    3.01419e+02
+ Pressure (bar)
+   -1.12079e+02
+
+           Step           Time
+       75000000   1500000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.13282e+03    7.96180e+02    1.11073e+02   -4.67403e+04   -4.05927e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51062e+04    7.96262e+03   -3.71435e+04   -2.88585e+06    3.05335e+02
+ Pressure (bar)
+    1.12106e+02
+
+Writing checkpoint, step 75651025 at Mon Feb 10 21:21:38 2025
+
+
+           Step           Time
+       76000000   1520000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.13750e+03    7.92080e+02    1.11747e+02   -4.70293e+04   -3.94687e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.53827e+04    8.17103e+03   -3.72117e+04   -2.92366e+06    3.13327e+02
+ Pressure (bar)
+    1.19427e+01
+
+           Step           Time
+       77000000   1540000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.13816e+03    8.13266e+02    1.38077e+02   -4.64449e+04   -3.34323e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.46897e+04    8.13012e+03   -3.65596e+04   -2.96135e+06    3.11758e+02
+ Pressure (bar)
+   -5.39209e+01
+
+           Step           Time
+       78000000   1560000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    9.93958e+02    8.57099e+02    1.24698e+02   -4.62884e+04   -3.83197e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.46959e+04    7.80843e+03   -3.68874e+04   -2.99944e+06    2.99422e+02
+ Pressure (bar)
+   -8.45531e+01
+
+           Step           Time
+       79000000   1580000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.10987e+03    7.92454e+02    1.32060e+02   -4.62472e+04   -3.68448e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.45813e+04    7.81007e+03   -3.67712e+04   -3.03770e+06    2.99485e+02
+ Pressure (bar)
+   -7.87339e+01
+
+           Step           Time
+       80000000   1600000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.02378e+03    7.90443e+02    1.19176e+02   -4.71045e+04   -3.39629e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.55107e+04    8.15390e+03   -3.73568e+04   -3.07561e+06    3.12670e+02
+ Pressure (bar)
+    1.19280e+02
+
+           Step           Time
+       81000000   1620000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.10920e+03    8.61265e+02    1.10424e+02   -4.69007e+04   -3.53978e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51738e+04    8.02149e+03   -3.71523e+04   -3.11396e+06    3.07592e+02
+ Pressure (bar)
+   -4.83832e+01
+
+           Step           Time
+       82000000   1640000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.03744e+03    8.08711e+02    1.03682e+02   -4.65725e+04   -4.37029e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.50597e+04    8.10804e+03   -3.69517e+04   -3.15119e+06    3.10911e+02
+ Pressure (bar)
+   -4.73698e+01
+
+Writing checkpoint, step 82495050 at Mon Feb 10 21:36:38 2025
+
+
+           Step           Time
+       83000000   1660000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    9.66439e+02    7.96884e+02    1.23698e+02   -4.62925e+04   -3.85963e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.47915e+04    8.06831e+03   -3.67232e+04   -3.19030e+06    3.09388e+02
+ Pressure (bar)
+   -8.24660e+01
+
+           Step           Time
+       84000000   1680000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    9.68894e+02    8.02115e+02    1.42922e+02   -4.70904e+04   -3.98174e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.55746e+04    7.92370e+03   -3.76509e+04   -3.22788e+06    3.03843e+02
+ Pressure (bar)
+    8.65284e+01
+
+           Step           Time
+       85000000   1700000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.14357e+03    8.38248e+02    1.15757e+02   -4.64798e+04   -3.75088e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.47573e+04    8.03428e+03   -3.67230e+04   -3.26538e+06    3.08083e+02
+ Pressure (bar)
+   -2.35891e+01
+
+           Step           Time
+       86000000   1720000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    9.92788e+02    7.97071e+02    1.37350e+02   -4.64042e+04   -3.93087e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.48701e+04    8.37673e+03   -3.64934e+04   -3.30354e+06    3.21214e+02
+ Pressure (bar)
+    9.32585e+00
+
+           Step           Time
+       87000000   1740000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    9.81747e+02    7.59304e+02    1.06253e+02   -4.62969e+04   -3.66072e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.48157e+04    8.20758e+03   -3.66081e+04   -3.34141e+06    3.14728e+02
+ Pressure (bar)
+   -3.62604e+01
+
+           Step           Time
+       88000000   1760000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    9.79558e+02    8.20023e+02    1.48223e+02   -4.67917e+04   -3.79395e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.52233e+04    8.09011e+03   -3.71331e+04   -3.37816e+06    3.10224e+02
+ Pressure (bar)
+    1.44166e+02
+
+           Step           Time
+       89000000   1780000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.10269e+03    7.76208e+02    1.24802e+02   -4.65422e+04   -3.71703e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.49102e+04    8.23361e+03   -3.66766e+04   -3.41633e+06    3.15726e+02
+ Pressure (bar)
+   -9.60819e+01
+
+Writing checkpoint, step 89304550 at Mon Feb 10 21:51:38 2025
+
+
+           Step           Time
+       90000000   1800000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.05369e+03    8.67192e+02    1.23675e+02   -4.63743e+04   -3.58829e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.46886e+04    8.30654e+03   -3.63820e+04   -3.45520e+06    3.18523e+02
+ Pressure (bar)
+   -4.43992e+01
+
+           Step           Time
+       91000000   1820000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.10543e+03    8.06046e+02    1.06507e+02   -4.66928e+04   -3.69136e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.50439e+04    7.80635e+03   -3.72376e+04   -3.49275e+06    2.99343e+02
+ Pressure (bar)
+   -7.57912e+01
+
+           Step           Time
+       92000000   1840000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.01883e+03    8.04524e+02    1.37228e+02   -4.66914e+04   -3.91833e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51227e+04    8.11368e+03   -3.70090e+04   -3.53204e+06    3.11128e+02
+ Pressure (bar)
+   -2.28455e+01
+
+           Step           Time
+       93000000   1860000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.09355e+03    8.11599e+02    1.16517e+02   -4.64671e+04   -4.10667e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.48561e+04    8.05241e+03   -3.68037e+04   -3.57009e+06    3.08778e+02
+ Pressure (bar)
+    7.84284e+01
+
+           Step           Time
+       94000000   1880000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.07392e+03    8.24516e+02    1.11592e+02   -4.69898e+04   -3.73427e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.53532e+04    8.14758e+03   -3.72057e+04   -3.60782e+06    3.12427e+02
+ Pressure (bar)
+    7.45637e+01
+
+           Step           Time
+       95000000   1900000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.13613e+03    7.67062e+02    1.11565e+02   -4.66076e+04   -3.52654e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.49455e+04    8.13847e+03   -3.68070e+04   -3.64487e+06    3.12078e+02
+ Pressure (bar)
+   -8.41852e+01
+
+           Step           Time
+       96000000   1920000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.05729e+03    7.50453e+02    1.47317e+02   -4.63719e+04   -3.66815e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.47837e+04    8.15565e+03   -3.66280e+04   -3.68144e+06    3.12737e+02
+ Pressure (bar)
+   -6.56151e+01
+
+Writing checkpoint, step 96120725 at Mon Feb 10 22:06:38 2025
+
+
+           Step           Time
+       97000000   1940000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    9.87409e+02    7.64373e+02    1.35162e+02   -4.66419e+04   -3.78487e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51334e+04    7.89100e+03   -3.72424e+04   -3.71969e+06    3.02589e+02
+ Pressure (bar)
+    4.79588e+01
+
+           Step           Time
+       98000000   1960000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.01478e+03    7.64730e+02    1.43745e+02   -4.66349e+04   -3.93705e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51053e+04    7.88378e+03   -3.72216e+04   -3.75805e+06    3.02312e+02
+ Pressure (bar)
+    1.51020e+01
+
+           Step           Time
+       99000000   1980000.00000
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.07113e+03    8.24635e+02    1.02899e+02   -4.64819e+04   -3.87681e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.48710e+04    8.10972e+03   -3.67612e+04   -3.79651e+06    3.10976e+02
+ Pressure (bar)
+   -6.93531e+01
+
+           Step           Time
+      100000000   2000000.00000
+
+Writing checkpoint, step 100000000 at Mon Feb 10 22:15:02 2025
+
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.08735e+03    8.68316e+02    1.60862e+02   -4.69800e+04   -3.68261e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.52317e+04    7.91674e+03   -3.73150e+04   -3.83277e+06    3.03576e+02
+ Pressure (bar)
+    1.11710e+02
+
+
+Energy conservation over simulation part #1 of length 2e+06 ps, time 0 to 2e+06 ps
+  Conserved energy drift: -9.07e-04 kJ/mol/ps per atom
+
+
+	<======  ###############  ==>
+	<====  A V E R A G E S  ====>
+	<==  ###############  ======>
+
+	Statistics over 100000001 steps using 1000001 frames
+
+   Energies (kJ/mol)
+           Bond          Angle       G96Angle        LJ (SR)   Coulomb (SR)
+    1.06247e+03    7.85279e+02    1.23519e+02   -4.67413e+04   -3.76635e+02
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -4.51466e+04    8.08232e+03   -3.70643e+04   -1.93605e+06    3.09925e+02
+ Pressure (bar)
+    1.12640e+00
+
+          Box-X          Box-Y          Box-Z
+    4.48668e+00    4.48668e+00    1.15951e+01
+
+   Total Virial (kJ/mol)
+    2.68867e+03    5.12239e-01   -7.93475e-01
+    5.12241e-01    2.68873e+03   -2.17372e-02
+   -7.93470e-01   -2.17404e-02    2.69121e+03
+
+   Pressure (bar)
+    1.25747e+00   -7.16401e-02    1.22785e-01
+   -7.16404e-02    1.24429e+00   -1.27086e-03
+    1.22784e-01   -1.27041e-03    8.77434e-01
+
+       T-Lipids      T-Solvent
+    3.09920e+02    3.09927e+02
+
+
+	M E G A - F L O P S   A C C O U N T I N G
+
+ NB=Group-cutoff nonbonded kernels    NxN=N-by-N cluster Verlet kernels
+ RF=Reaction-Field  VdW=Van der Waals  QSTab=quadratic-spline table
+ W3=SPC/TIP3p  W4=TIP4p (single or pairs)
+ V&F=Potential and force  V=Potential only  F=Force only
+
+ Computing:                               M-Number         M-Flops  % Flops
+-----------------------------------------------------------------------------
+ Pair Search distance check         1219159.260994    10972433.349     1.0
+ NxN RF Elec. + LJ [F]              5422893.471488   206069951.917    19.1
+ NxN RF Elec. + LJ [V&F]              54774.860656     2957842.475     0.3
+ NxN LJ [F]                        25199160.703808   831572303.226    77.0
+ NxN LJ [V&F]                        254540.144224    10945226.202     1.0
+ NxN RF Electrostatics [F]             7551.835040      234106.886     0.0
+ NxN RF Electrostatics [V&F]             76.158480        2741.705     0.0
+ Shift-X                               8368.002092       50208.013     0.0
+ Bonds                                76000.000760     4484000.045     0.4
+ Angles                               64000.000640    10752000.108     1.0
+ Virial                                8548.002137      153864.038     0.0
+ Stop-CM                               2092.002092       20920.021     0.0
+ Calc-Ekin                            83680.004184     2259360.113     0.2
+-----------------------------------------------------------------------------
+ Total                                              1080474958.097   100.0
+-----------------------------------------------------------------------------
+
+
+      R E A L   C Y C L E   A N D   T I M E   A C C O U N T I N G
+
+On 1 MPI rank, each using 5 OpenMP threads
+
+ Activity:              Num   Num      Call    Wall time         Giga-Cycles
+                        Ranks Threads  Count      (s)         total sum    %
+--------------------------------------------------------------------------------
+ Neighbor search           1    5    4000001    1159.839      17365.607   8.9
+ Force                     1    5  100000001    9275.542     138877.386  70.8
+ NB X/F buffer ops.        1    5  196000001    1337.170      20020.675  10.2
+ Write traj.               1    5      10015      17.402        260.546   0.1
+ Update                    1    5  100000001     667.813       9998.788   5.1
+ Rest                                            647.066       9688.156   4.9
+--------------------------------------------------------------------------------
+ Total                                         13104.832     196211.159 100.0
+--------------------------------------------------------------------------------
+
+               Core t (s)   Wall t (s)        (%)
+       Time:    65524.097    13104.832      500.0
+                         3h38:24
+                 (ns/day)    (hour/ns)
+Performance:    13185.977        0.002
+Finished mdrun on rank 0 Mon Feb 10 22:15:03 2025
+

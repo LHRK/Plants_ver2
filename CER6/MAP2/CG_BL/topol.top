@@ -1,0 +1,20 @@
+#include "/home/ltr/PYTHON/M3-Lipid-Parameters/openbeta/martini_v3.0.0.itp"
+#include "/home/ltr/PYTHON/M3-Lipid-Parameters/openbeta/martini_v3.0.0_ffbonded_v2_openbeta.itp"
+#include "initial_CG.itp"
+#include "/home/ltr/PYTHON/M3-Lipid-Parameters/openbeta/martini_v3.0.0_phospholipids_PC_v2_openbeta.itp"
+#include "/home/ltr/PYTHON/M3-Lipid-Parameters/openbeta/martini_v3.0.0_solvents_v1.itp"
+#include "/home/ltr/PYTHON/M3-Lipid-Parameters/openbeta/martini_v3.0.0_ions_v1.itp"
+
+[ system ]
+; name
+INSANE! Membrane UpperLeaflet>CER6:POPC=30.0:70.0 LowerLeaflet>CER6:POPC=30.0:70.0
+
+[ molecules ]
+; name  number
+CER6            10
+POPC            25
+CER6            10
+POPC            25
+W           1304
+NA               14
+CL               14

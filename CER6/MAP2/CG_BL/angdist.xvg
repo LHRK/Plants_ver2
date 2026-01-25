@@ -1,0 +1,45 @@
+# This file was created Mon Feb 10 17:16:37 2025
+# Created by:
+#                      :-) GROMACS - gmx angle, 2023.1 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /mnt/f/BILAYERS/CER6/gromacs_MAP2/CG_BL
+# Command line:
+#   gmx angle -f p.xtc -n test.ndx -od
+# gmx angle is part of G R O M A C S:
+#
+# Getting the Right Output Means no Artefacts in Calculating Stuff
+#
+@    title "Angle Distribution: CER6_&_GLB_NOH_OH"
+@    xaxis  label "Degrees"
+@    yaxis  label ""
+@TYPE xy
+@    subtitle "average angle: 48.22\So\N"
+        36    0.000000
+        37    0.000005
+        38    0.000045
+        39    0.000260
+        40    0.000875
+        41    0.002755
+        42    0.006974
+        43    0.018168
+        44    0.037841
+        45    0.069038
+        46    0.106964
+        47    0.142506
+        48    0.159354
+        49    0.153440
+        50    0.123518
+        51    0.085081
+        52    0.050520
+        53    0.025262
+        54    0.011254
+        55    0.004255
+        56    0.001340
+        57    0.000430
+        58    0.000090
+        59    0.000020
+        60    0.000000
+        61    0.000005
+        62    0.000000
