@@ -1,0 +1,122 @@
+[ moleculetype ]
+GIPC  1
+[ atoms ]
+; nr type resnr residue atom cgnr charge mass
+;sugars
+   1    SN6        1    GIPC    A          1       0      54
+   2    SP4r       1    GIPC    B          2       0      54
+   3    SP1r       1    GIPC    C          3       0      54
+   4    SN6        1    GIPC    Aa         4       0      66
+   5    SP1r       1    GIPC    Bb         5       0      66
+   6    TN4ar      1    GIPC    Cc         6       0      66
+   7    SQ5n       1    GIPC    Dd         7      -1       0
+   8    SN6        1    GIPC    Aaa        8       0      54
+   9    SP1r       1    GIPC    Bbb        9       0      54
+  10    SP4r       1    GIPC    Ccc       10       0      54
+  11    TC4        1    GIPC    VS1       11       0       0
+  12    TC4        1    GIPC    VS2       12       0       0
+  13    TC4        1    GIPC    VS3       13       0       0 
+;Linker region
+  14    Q5         1    GIPC    PO4       14      -1      72
+  15    SP3d       1    GIPC    NOH       15       0      54 ;NH-OH
+  16    SP4        1    GIPC    GLA       16       0      54 ;2xOH
+  17    SP1        1    GIPC    GLB       17       0      54 ;1xOH  This might need to be split into two, depending on insertation depth
+;tail part
+  18    C1         1    GIPC    C1A       18       0      72
+  19    C1         1    GIPC    C2A       19       0      72
+  20    C1         1    GIPC    C1B       20       0      72
+  21    C1         1    GIPC    C2B       21       0      72
+
+
+
+[ constraints ]
+; i  j  funct length
+;constraints are scaled 15 % according to the Martini 3 sugar paper:
+;https://doi.org/10.1021/acs.jctc.2c00757 
+;Martini 3 Coarse-Grained Force Field for Carbohydrates
+   1       2       1    0.380     ;A-B
+   1       3       1    0.470     ;A-C
+   2       3       1    0.396     ;B-C
+   4       5       1    0.35430   ;Aa-Bb
+   4       6       1    0.34347   ;Aa-Cc
+   5       6       1    0.34612   ;Bb-Cc
+   8       9       1    0.369     ;Bbb-Aaa
+   9      10       1    0.386     ;Bbb-Ccc
+   8      10       1    0.375     ;Aaa-Ccc
+[ bonds ]
+   1       5       1    0.357   6500  ;A-Bb
+   4       9       1    0.375   6500  ;Aa-Bbb
+;Linker region 
+   8      14       1    0.37    5000  ;Aaa-PO4
+   14     15       1    0.47    5000  ;PO4-NOH
+   14     16       1    0.47    5000  ;PO4-GLA
+   15     16       1    0.35    5000  ;NOH-GLA
+   15     17       1    0.37    5000  ;NOH-GLB
+;tail part
+   16     18       1    0.45    5000  ;GLA-C1A
+   18     19       b_C1_C1_end        ;C1A-C2A
+   17     20       1    0.50    5000  ;GLB-C1B
+   20     21       b_C1_C1_end        ;C1B-C2B
+
+
+
+[ angles ]
+; All angles stable and good. 
+;  i  j  k   funct   angle   fo80rce.c.
+   2       1       5       1     120      50  ;B-A-Bb
+   4       5       1       1     170      20  ;Aa-Bb-A
+   5       4       9      10      90     100  ;Bb-Aa-Bbb
+   8       9       4       1      75      50  ;Aaa-Bbb-Aa
+   6       4       9       1      50     150  ;Cc-Aa-Bbb 
+   1       5       6       2     120      50  ;A-Bb-Cc
+   3       5       4       2     130     150  ;C-Bb-Aa
+   3       1       5      10      80      10  ;C-A-Bb 
+   8       9       4       2      75      45  ;Aaa-Bbb-Aa
+   5       4       9      10      80      90  ;Bb-Aa-Bbb
+   4       9      10       2     100     150  ;Aa-Bbb-Ccc
+   4       6       7       2     140     100  ;Aa-Cc-Dd
+;Linker
+   9       8      14       2      80     250  ;Bbb-Aaa-PO4
+   9      10      14       2      50     350  ;Bbb-Ccc-PO4
+   8      14      15       2      80     150  ;Aaa-PO4-NOH
+   8      14      16       2      90      20  ;Aaa-PO4-GLA
+  10       8      14       2     140     100  ;Ccc-Aaa-PO4 
+  17      15      16       2     125      45  ;GLB-NOH-GLA
+;Tail
+  15      16      18       10    155      45  ;NOH-GLA-C1A
+  16      18      19       10    155      35  ;GLA-C1A-C2A
+  15      17      20       2     110      45  ;NOH-GLB-C1B
+  17      20      21       10    155      45  ;GLB-C1B-C2B
+  18      16      15       10    155      35  ;C1A-GLA-NOH
+  16      15      17       2     130      35  ;GLA-NOH-GLB
+  20      17      15       10    129      35  ;C1B-GLB-NOH
+  17      15      16       10    125      35  ;GLB-NOH-GLA
+
+
+ 
+
+[ dihedrals ]
+;sugar and linker
+9  8  14 15   1     30    10   1  ;Bbb Aaa PO4 NOH 
+3  2  1  5    2    -40    30      ;C-B-A-Bb
+6  5  4  9    2    -25    100     ;Cc-Bb-Aa-Bbb 
+10 8  9  4    2    110    50      ;Ccc-Aaa-Bbb-Aa
+5  4  9  10   1    100    25   1  ;Bb-Aa-Bbb-Ccc
+18 16 15 17   1    170     5   1  ;C1A-GLA-NOH-GLB
+20 17 15 16   1    170     5   1  ;C1B-GLB-NOH-GLA
+
+
+[ exclusions ]
+13  1  2  3  4  5  6  7  8  9  10       ;VS3 A B C Aa Bb Cc Dd Aaa Bbb Ccc
+11  1  2  3  4  5  6  7  8  9  10       ;VS1 A B C Aa Bb Cc Dd Aaa Bbb Ccc
+12  1  2  3  4  5  6  7  8  9  10       ;VS2 A B C Aa Bb Cc Dd Aaa Bbb Ccc
+7   1  2  3  4  5  6  8  9  10 14 15    ;Dd A B C Aa Bb Cc Aaa Bbb Ccc PO4 NOH
+
+
+[ virtual_sitesn ]
+14 1 1 2 3    ;VS1  A B C
+15 1 4 5 6    ;VS2  Aa Bb Cc
+16 1 8 9 10   ;VS3  Aaa Bbb Ccc
+
+[ virtual_sites3 ]
+7  4 5 6 4  0.06869  1.50235  -0.99167 ;Dd - Aa-Bb-Cc and off-plane virtual site

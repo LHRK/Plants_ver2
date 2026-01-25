@@ -1,0 +1,156 @@
+[ moleculetype ]
+GIB0  1
+[ atoms ]
+; nr type resnr residue atom cgnr charge mass
+;sugars
+   1    Q5         0    GIB0    PO4        1      -1      
+   2    SN6        0    GIB0     A0        2       0      
+   3    SP1r       0    GIB0     B0        3       0      
+   4    SP4r       0    GIB0     C0        4       0      
+   5    TC4        0    GIB0    VS0        5       0    0  
+   6    SN6        0    GIB0     A1        6       0      
+   7    SP1r       0    GIB0     B1        7       0      
+   8    TN4ar      0    GIB0     C1        8       0      
+   9    SQ5n       0    GIB0     D1        9      -1    0  
+  10    TC4        0    GIB0    VS1       10       0    0  
+  11    SN6        0    GIB0     A2       11       0      
+  12    SP1r       0    GIB0     B2       12       0      
+  13    SP1r       0    GIB0     C2       13       0      
+  14    TC4        0    GIB0    VS2       14       0    0  
+  15    SN6        0    GIB0     A3       15       0      
+  16    SP4r       0    GIB0     B3       16       0      
+  17    SP1r       0    GIB0     C3       17       0      
+  18    TC4        0    GIB0    VS3       18       0    0   
+;Linker region
+  19    SP2        0    GIB0   NOH       19       0      54 ;NH-OH
+  20    P4         0    GIB0   GLA       20       0      72 ;2xOH long tail attached
+  21    SP1        0    GIB0   GLB       21       0      54 ;1xOH This might need to be split into two, depending on insertation depth 18 tail attached
+;tail part
+;18:1
+  22    C1         0    GIB0   C1A       22       0      72
+  23    C1         0    GIB0   C2A       23       0      72
+  24    C1         0    GIB0   C3A       24       0      72
+;24:0 stolen from DEV18
+  25    C1         0    GIB0   C1B       25       0      72
+  26    C1         0    GIB0   C2B       26       0      72
+  27    C1         0    GIB0   C3B       27       0      72
+  28    C1         0    GIB0   C4B       28       0      72
+  29    C1         0    GIB0   C5B       29       0      72
+
+[ constraints ]
+; i  j  funct length
+;sugar
+;scaled 15% as per the carbohydrate paper
+   2       3       1    0.369     ;A0-B0  
+   2       4       1    0.375     ;A0-C0  
+   3       4       1    0.386     ;B0-C0  
+   6       7       1    0.35430   ;A1-B1  
+   6       8       1    0.34347   ;A1-C1  
+   7       8       1    0.34612   ;B1-C1  
+  11      12       1    0.380     ;A2-B2 
+  11      13       1    0.470     ;A2-C2  
+  12      13       1    0.396     ;B2-C2 
+;sugar links
+  15      16       1    0.29      ;A3-B3
+  15      17       1    0.41      ;A3-C3
+  16      17       1    0.33      ;B3-C3
+
+[ bonds ]
+;sugar
+   1       2       1    0.37    5000  ;PO4-A0 ;
+   3       6       1    0.375   6500  ;B0-A1  ;
+   7      11       1    0.357   6500  ;B1-A2  ; 
+  12      15       1    0.35    5000  ;B2-A3  ; new
+;Linker region 
+   1      19       1    0.47    5000  ;PO4-NOH ; 
+   19     20       1    0.30    9000  ;NOH-GLA ; same
+   19     21       1    0.30    8000  ;NOH-GLB ; same
+;tail part
+   20     22       b_GL_C1_glyc_5long ;GLA-C1A NB!  Building block assumption
+   22     23       b_C1_C1_mid        ;C1A-C2A
+   23     24       b_C1_C1_mid        ;C2A-C3A
+   21     25       1    0.50    5000  ;GLB-C1B
+   25     26       b_C1_C1_mid        ;C1B-C2B
+   26     27       b_C1_C1_mid        ;C2B-C3B
+   27     28       b_C1_C1_mid        ;C3B-C4B
+   28     29       b_C1_C1_mid        ;C4B-C5B
+
+[ angles ]
+; All angles stable and good. 
+;  i  j  k   funct   angle   force.c.
+   1       2       3      2      83     150   ;PO4-A0-B0  
+   2       3       6      2      75      45   ;A0-B0-A1  
+   3       6       8      1      50     150   ;B0-A1-C1  
+  12      11       7      10     110      50  ;B2-A2-B1  stab dihed
+   7       6       3      10     100      75  ;B1-A1-B0  stab dihed. +10 deg for stab.
+   2       3       6      10      75      75  ;A0-B0-A1  stab dihed
+   8       6       3      1       50     150  ;C1-A1-B0  stab dihed
+   2       3       6      2       75      45  ;A0-B0-A1 
+  11       6       2      2      119      50  ;A2-A1-A0
+  13       7       6      10     130     110  ;C2-B1-A1
+; last sugar part
+  12      15      17      10      84      75  ;B2-A3-C3 
+  11      12      15       1     172      75  ;A2-B2-A3   ;;stability risk
+;additional
+   1       5      10       1      82     175  ;PO4-VS0-VS1
+   5      10      14      10     124     300  ;VS0-VS1-VS2
+  10      14      18      10     132     300  ;VS1-VS2-VS3
+
+;;Linker. From GIB0
+   4       2       1       2     140     150  ;C0-A0-PO4 
+   2       1      19      10      85     100  ;A0-PO4-NOH  
+   3       2       1       2      83     150  ;B0-A0-PO4  
+
+
+
+;PO4-NOH-GLA and PO4-NOH-GLB could likely improve model.
+;;Tail 
+  19      20      22        2    155      45  ;NOH-GLA-D1A 
+  19      21      25        2    110      45  ;NOH-GLB-C1B 
+  20      22      23        a_GL_C1_C1_glyc   ;GLA-C1A-C2A NB! here we use building block approach and assume its fine
+  21      25      26        2    160      75  ;GLB-C1B-C2B from CER6  
+  25      21      19        2    100      55  ;C1B-GLB-NOH  
+;  22      20      19        2    155      35  ;C1A-GLA-NOH
+;;tails taken from DEV18
+ 22      23      24   a_C1_C1_C1_def         ;C1A-C2A-C3A
+ 25      26      27   a_C1_C1_C1_def         ;C1B-C2B-C3B
+ 25      27      28   a_C1_C1_C1_def         ;C2B-C3B-C4B
+ 27      28      29   a_C1_C1_C1_def         ;C3B-C4B-C5B
+
+[ dihedrals ]
+;sugar1
+ 4    2   3  6    2    110    50      ;C0-A0-B0-A1
+ 8    6   3  2    2    169     5      ;C1-A1-B0-A0
+;sugar2
+ 8    7   6  3    2    -25    100     ;C1-B1-A1-B0 Maybe only have either or  (old)
+; 3    6   8  7    2    134     30     ;B0-A1-C1-B1 Maybe only have either or (new)
+;sugar3
+ 7   11  13 12    2    138    35      ;B1-A2-C2-B2
+ 13  12  11  7    2    -40    30      ;C2-B2-A2-B1
+;sugar4
+12   15  17  16   2    124    50      ;B2-A3-C3-B3
+11   13   7  6    2    180    30      ;A2-C2-B1-A1
+;linker
+3    2   1   19   2   -130    10      ;B0 A0 PO4 NOH 
+4    3   2   1    2    180    50      ;C0-B0-A0-PO4
+
+[ exclusions ]
+ 5 4 3 2    ; VS A0 B0 C0
+10 8 7 6    ; VS A1 B1 C1  
+14 13 12 11 ; VS A2 B2 C2  
+18 17 16 15 ; VS A3 B3 C3
+9 7 8 6     ; D1 A1 B1 C1 
+8 3    ;C1-B0
+6 2    ;A1-A0
+3 1    ;B0-PO4
+
+
+[ virtual_sitesn ]
+5 1 4 3 2    
+10 1 8 7 6    
+14 1 13 12 11   
+18 1 17 16 15
+
+[ virtual_sites3 ]
+;9    6 7 8    4  0.11249  1.50560  -2.09895 ;D1 - ABC and off-plane virtual site OLD
+9    6 7 8    4  0.06869  1.50235  -0.99167 ;D1 - ABC and off-plane virtual site NEW

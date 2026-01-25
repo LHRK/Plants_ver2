@@ -1,0 +1,35 @@
+[ moleculetype ]
+CER6  1
+[ atoms ]
+; nr type resnr residue atom cgnr charge mass
+   1    SP2        1    CER6    NOH        1       0      54
+   2    TN6        1    CER6    OH         2       0      36
+   3    SP1        1    CER6    GLA        3       0      54
+   4    P4         1    CER6    GLB        4       0      72
+   5    C1         1    CER6    C1A        5       0      72
+   6    C1         1    CER6    C2A        6       0      72
+   7    C1         1    CER6    C1B        7       0      72
+   8    C1         1    CER6    C2B        8       0      72
+
+[ bonds ]
+; i  j  funct length
+   1       2       1    0.37    9000  ;NOH-OH 
+   1       4       1    0.30    9000  ;NOH-GLB
+   1       3       1    0.30    8000  ;GLA-NOH
+   2       4       1    0.30    9000  ;OH-GLB
+   4       7       1    0.47    4000  ;GLB-C1B
+   7       8       1    0.55    4000  ;C1B-C2B
+   3       5       1    0.60    4000  ;GLA-C1A
+   5       6       1    0.55    3000  ;C1A-C2A
+
+[ angles ]
+;  i  j  k   funct   angle   force.c.
+   6       5       3       2     160      75  ;C2A-C1A-GLA
+   5       3       1       2     100      55  ;C1A-GLA-NOH
+   4       1       2       2     50       250 ;GLB-NOH-OH
+;   1       2       4       2     45       95  ;NOH-OH-GLB
+   2       4       7       2     135      35  ;OH-GLB-C1B
+   2       3       5       2      90      15  ;OH-GLA-C1A ; new added
+   4       7       8       2     160      65  ;GLB-C1B-C2B
+   3       1       4       2     160      65  ;GLA-NOH-GLB
+

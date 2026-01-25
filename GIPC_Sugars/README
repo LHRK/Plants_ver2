@@ -1,0 +1,3 @@
+## The mapping and param of the three sugars on GIPC. The tails are not considered here
+## The notebook contains all the part from mapping, to SASA calculations to fitting the bondende parameters. 
+## For the substituent on the middle sugar, an improper dihedral is used in the Martini sugar paper, however, this is not stable so an off-plane virtual site is now used instead. Also makes stuff faster. For calculating the off-plane site a different notebook is used. 

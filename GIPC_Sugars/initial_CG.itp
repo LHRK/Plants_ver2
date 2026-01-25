@@ -1,0 +1,100 @@
+[ moleculetype ]
+CER2  1
+[ atoms ]
+; nr type resnr residue atom cgnr charge mass
+   1    SN6        0    CER2    A          1       0      54
+   2    SP4r       0    CER2    B          2       0      54
+   3    SP1r       0    CER2    C          3       0      54
+   4    SN6        0    CER2    Aa         4       0      66
+   5    SP1r       0    CER2    Bb         5       0      66
+   6    TN4ar      0    CER2    Cc         6       0      66
+   7    SQ5n       0    CER2    Dd         7      -1       0
+   8    SN6        0    CER2    Aaa        8       0      54
+   9    SP1r       0    CER2    Bbb        9       0      54
+  10    SP4r       0    CER2    Ccc       10       0      54
+  11    Q5         0    CER2    PO4       11      -1      72
+  12    SP3d       0    CER2    NOH       12       0      54
+  13    SN4a       0    CER2    GLA       13       0      54
+  14    TC4        0    CER2    VS1       14       0       0
+  15    TC4        0    CER2    VS2       15       0       0
+  16    TC4        0    CER2    VS3       16       0       0 
+
+
+[ constraints ]
+; i  j  funct length
+;constraints are scaled 15 % according to the Martini 3 sugar paper:
+;https://doi.org/10.1021/acs.jctc.2c00757 
+;Martini 3 Coarse-Grained Force Field for Carbohydrates
+   1       2       1    0.380     ;A-B
+   1       3       1    0.470     ;A-C
+   2       3       1    0.396     ;B-C
+   4       5       1    0.35430   ;Aa-Bb
+   4       6       1    0.34612   ;Aa-Cc
+   5       6       1    0.34347   ;Bb-Cc
+   8       9       1    0.369     ;Bbb-Aaa
+   9      10       1    0.386     ;Bbb-Ccc
+   8      10       1    0.375     ;Aaa-Ccc
+[ bonds ]
+   1       5       1    0.357   6500  ;A-Bb
+   4       9       1    0.375   6500  ;Aa-Bbb 
+   8      11       1    0.37    5000  ;Aaa-PO4
+  11      12       1    0.47    5000  ;PO4-NOH
+  11      13       1    0.47    5000  ;PO4-GLA
+
+[ angles ]
+; All angles stable and good. 
+;  i  j  k   funct   angle   fo80rce.c.
+   2       1       5       1     120      50  ;B-A-Bb
+   4       5       1       1     170      20  ;Aa-Bb-A
+   5       4       9      10      90     100  ;Bb-Aa-Bbb
+   8       9       4       1      75      50  ;Aaa-Bbb-Aa
+   9       8      11       2      80     250  ;Bbb-Aaa-PO4
+   9      10      11       2      50     350  ;Bbb-Ccc-PO4
+   8      11      12       2      80     150  ;Aaa-PO4-NOH
+   8      11      13       2      90      20  ;Aaa-PO4-GLA
+  10       8      11       2     140     100  ;Ccc-Aaa-PO4
+   3       2       1       1      80      50  ;C-B-A
+   6       5       4       1      75      50  ;Cc-Bb-Aa
+  10       8       9       1      55      50  ;Ccc-Aaa-Bbb
+   1       5       6       2     120      50  ;A-Bb-Cc
+   3       5       4       2     125      50  ;C-Bb-Aa
+   3       1       5      10      80      10  ;C-A-Bb
+   8       9       4       2      75      45  ;Aaa-Bbb-Aa
+   5       4       9      10      90     100  ;Bb-Aa-Bbb
+  15       4       9       2      80      55  ;VS2-Aa-Bbb
+  4        9      16       2      80      25  ;Aa-Bbb-VS3
+  14       1       5       2     100      25  ;VS1-A-Bb
+  1        5      15       2     160      20  ;A-Bb-VS2
+
+;  6       4       9       2      45     150  ;Cc-Aa-Bbb
+;  1       5       4       2     150      20  ;A-Bb-Aa  maybe turn on 
+  4       9      10       2     100     150  ;Aa-Bbb-Ccc maybe turn on
+;  4       9       8       2      75     200  ;Aa-Bbb-Aaa 
+;  1       2       5       2      45      25  ;A-B-Bb
+;  8       9       4       2      75      25  ;Aaa-Bbb-Aa
+ 
+
+[ dihedrals ]
+9  8  11 12   1     30    10   1  ;Bbb Aaa PO4 NOH 
+3  2  1  5    2    -40    30      ;C-B-A-Bb
+6  5  4  9    2    -35    100     ;Cc-Bb-Aa-Bbb
+10 8  9  4    2    110    50      ;Ccc-Aaa-Bbb-Aa
+15 4  9 16    1     14    45   1  ;VS2-Aa-Bbb-VS3
+;14 1  5 15    1     15     5   2  ;VS1-A-Bb-VS2
+5  4  9  10   1     14    45   1  ;Bb-Aa-Bbb-Ccc
+
+
+[ exclusions ]
+16  1  2  3  4  5  6  7  8  9  10       ;VS3 A B C Aa Bb Cc Dd Aaa Bbb Ccc
+14  1  2  3  4  5  6  7  8  9  10       ;VS1 A B C Aa Bb Cc Dd Aaa Bbb Ccc
+15  1  2  3  4  5  6  7  8  9  10       ;VS2 A B C Aa Bb Cc Dd Aaa Bbb Ccc
+7   1  2  3  4  5  6  8  9  10 11 12 13 ;Dd A B C Aa Bb Cc Aaa Bbb Ccc PO4 NOH
+
+
+[ virtual_sitesn ]
+14 1 1 2 3    ;VS1  A B C
+15 1 4 5 6    ;VS2  Aa Bb Cc
+16 1 8 9 10   ;VS3  Aaa Bbb Ccc
+
+[ virtual_sites3 ]
+7  4 5 6 4  -0.57104  1.50235  0.99167 ;Dd - Aa-Bb-Cc

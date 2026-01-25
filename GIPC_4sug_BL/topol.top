@@ -1,0 +1,21 @@
+#include "/home/ltr/PYTHON/M3-Lipid-Parameters/openbeta/martini_v3.0.0.itp"
+#include "/home/ltr/PYTHON/M3-Lipid-Parameters/openbeta/martini_v3.0.0_ffbonded_v2_openbeta.itp"
+#include "GIB0_18-0_24-0_WORKING.itp"
+#include "/home/ltr/PYTHON/M3-Lipid-Parameters/openbeta/martini_v3.0.0_phospholipids_PC_v2_openbeta.itp"
+#include "/home/ltr/PYTHON/M3-Lipid-Parameters/openbeta/martini_v3.0.0_solvents_v1.itp"
+#include "/home/ltr/PYTHON/M3-Lipid-Parameters/openbeta/martini_v3.0.0_ions_v1.itp"
+
+[ system ]
+; name
+INSANE! Membrane UpperLeaflet>GIB0:POPC=50.0:50.0 LowerLeaflet>GIB0:POPC=50.0:50.0
+
+[ molecules ]
+; name  number
+GIB0            18
+POPC            18
+GIB0            18
+POPC            18
+W           298
+NA               4
+CL               4
+NA               72

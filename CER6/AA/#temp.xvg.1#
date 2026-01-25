@@ -1,0 +1,25 @@
+# This file was created Fri Jan 31 21:57:18 2025
+# Created by:
+#                       :-) GROMACS - gmx sasa, 2023.1 (-:
+# 
+# Executable:   /usr/local/gromacs/bin/gmx
+# Data prefix:  /usr/local/gromacs
+# Working dir:  /mnt/f/BILAYERS/CER6/gromacs_MAP2/AA
+# Command line:
+#   gmx sasa -s gro.gro -o temp.xvg -probe 0.191 -ndots 240 -q surface.pdb
+# gmx sasa is part of G R O M A C S:
+#
+# Great Red Oystrich Makes All Chemists Sane
+#
+@    title "Solvent Accessible Surface"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "Area (nm\S2\N)"
+@TYPE xy
+@ view 0.15, 0.15, 0.75, 0.85
+@ legend on
+@ legend box on
+@ legend loctype view
+@ legend 0.78, 0.8
+@ legend length 2
+@ s0 legend "Total"
+      0.000    9.272
